@@ -1,0 +1,233 @@
+{
+	"board": {
+		"img": "imgs/board.jpg"
+	},
+	"pieces": [
+		{
+			"img": "imgs/black_rook.png",
+			"position": {
+				"x": 25,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_knight.png",
+			"position": {
+				"x": 120,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_bishop.png",
+			"position": {
+				"x": 225,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_queen.png",
+			"position": {
+				"x": 315,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_king.png",
+			"position": {
+				"x": 415,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_bishop.png",
+			"position": {
+				"x": 515,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_knight.png",
+			"position": {
+				"x": 605,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_rook.png",
+			"position": {
+				"x": 705,
+				"y": 25
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 25,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 125,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 225,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 325,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 420,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 520,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 615,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/black_pawn.png",
+			"position": {
+				"x": 710,
+				"y": 125
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 25,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 125,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 225,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 325,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 415,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 515,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 615,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_pawn.png",
+			"position": {
+				"x": 710,
+				"y": 610
+			}
+		},
+		{
+			"img": "imgs/white_rook.png",
+			"position": {
+				"x": 25,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_knight.png",
+			"position": {
+				"x": 120,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_bishop.png",
+			"position": {
+				"x": 225,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_queen.png",
+			"position": {
+				"x": 310,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_king.png",
+			"position": {
+				"x": 415,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_bishop.png",
+			"position": {
+				"x": 515,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_knight.png",
+			"position": {
+				"x": 605,
+				"y": 710
+			}
+		},
+		{
+			"img": "imgs/white_rook.png",
+			"position": {
+				"x": 705,
+				"y": 710
+			}
+		}
+	],
+	"decks": [
+	]
+}

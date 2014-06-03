@@ -1,0 +1,11 @@
+Pieces
+======
+
+CC-0
+Original work : http://opengameart.org/content/chess-pieces
+
+Board
+=====
+
+CC-BY-SA
+Original work : http://commons.wikimedia.org/wiki/File:Starting_position_in_a_chess_game.jpg
