@@ -1,79 +1,62 @@
 var canvas = null;
 var canvasCtx = null;
 
-var simulation = {
-	board: {
-		img: null
-	},
-	pieces: [
-		{
-			img: null,
-			selected: false,
-			position: {
-				x: 0,
-				y: 0
-			}
-		},
-		{
-			img: null,
-			selected: false,
-			position: {
-				x: 200,
-				y: 200
-			}
-		}
-	],
-	decks: [
-		{
-			img: null,
-			position: {
-				x: 400,
-				y: 200
-			},
-			composition: [
-				{
-					number: 3,
-					img: null,
-				},
-				{
-					number: 2,
-					img: null,
-				}
-			]
-		}
-	]
-};
+var simulation = null;
 
 function log(msg) {
 	document.getElementById("log").innerHTML += "<p>"+ msg +"</p>";
 }
 
-function init(canvasId) {
-	// Setup rendering
+function init(canvasId, configUrl) {
+	// Init access to the canvas
 	canvas = document.getElementById(canvasId);
 	canvasCtx = canvas.getContext("2d");
 
-	// Setup simulation
+	// Load the configuration
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function()
+	{
+		if (xhr.readyState === 4) {
+			if (xhr.status === 200) {
+				simulation = JSON.parse(xhr.responseText);
+				loadImages();
+			} else {
+				log("Error while loading the configuration : "+ xhr.status);
+			}
+		}
+	};
+	xhr.open("GET", configUrl, true);
+	xhr.send();
+}
+
+function loadImages() {
+	var src = simulation.board.img;
 	simulation.board.img = new Image();
 	simulation.board.img.addEventListener("load", waitLoad, false);
-	simulation.board.img.src = "imgs/board.jpg";
+	simulation.board.img.src = src;
 
-	simulation.pieces[0].img = new Image();
-	simulation.pieces[0].img.addEventListener("load", waitLoad, false);
-	simulation.pieces[0].img.src = "imgs/piece.png";
-	simulation.pieces[1].img = new Image();
-	simulation.pieces[1].img.addEventListener("load", waitLoad, false);
-	simulation.pieces[1].img.src = "imgs/piece.png";
+	var i;
+	for (i = 0; i < simulation.pieces.length; ++i) {
+		src = simulation.pieces[i].img;
+		simulation.pieces[i].img = new Image();
+		simulation.pieces[i].img.addEventListener("load", waitLoad, false);
+		simulation.pieces[i].img.src = src;
+	}
 
-	simulation.decks[0].img = new Image();
-	simulation.decks[0].img.addEventListener("load", waitLoad, false);
-	simulation.decks[0].img.src = "imgs/cardback.png";
-	simulation.decks[0].composition[0].img = new Image();
-	simulation.decks[0].composition[0].img.addEventListener("load", waitLoad, false);
-	simulation.decks[0].composition[0].img.src = "imgs/card1.png";
-	simulation.decks[0].composition[1].img = new Image();
-	simulation.decks[0].composition[1].img.addEventListener("load", waitLoad, false);
-	simulation.decks[0].composition[1].img.src = "imgs/card2.png";
+	for (i = 0; i < simulation.decks.length; ++i) {
+		src = simulation.decks[i].img;
+		simulation.decks[i].img = new Image();
+		simulation.decks[i].img.addEventListener("load", waitLoad, false);
+		simulation.decks[i].img.src = src;
+
+		var j;
+		for (j = 0; j < simulation.decks[i].composition.length; ++j) {
+			src = simulation.decks[i].composition[j].img;
+			simulation.decks[i].composition[j].img = new Image();
+			simulation.decks[i].composition[j].img.addEventListener("load", waitLoad, false);
+			simulation.decks[i].composition[j].img.src = src;
+		}
+	}
 }
 
 function waitLoad() {

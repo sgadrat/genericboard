@@ -1,0 +1,40 @@
+{
+	"board": {
+		"img": "imgs/board.jpg"
+	},
+	"pieces": [
+		{
+			"img": "imgs/piece.png",
+			"position": {
+				"x": 0,
+				"y": 0
+			}
+		},
+		{
+			"img": "imgs/piece.png",
+			"position": {
+				"x": 200,
+				"y": 200
+			}
+		}
+	],
+	"decks": [
+		{
+			"img": "imgs/cardback.png",
+			"position": {
+				"x": 400,
+				"y": 200
+			},
+			"composition": [
+				{
+					"number": 3,
+					"img": "imgs/card1.png"
+				},
+				{
+					"number": 2,
+					"img": "imgs/card2.png"
+				}
+			]
+		}
+	]
+}
