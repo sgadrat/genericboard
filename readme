@@ -1,0 +1,11 @@
+Concept:
+========
+
+Simple stupid system where one can move pieces around a board.
+
+The idea is to help test board games design without creating physical cards and pieces.
+
+License:
+========
+
+Except stated explicitely in "license.txt" files, the files of this project are released in WTFPL version 2.
