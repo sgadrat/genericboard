@@ -108,9 +108,6 @@ function loaded() {
 	canvas.addEventListener("mouseup", canvasMouseUp, false);
 	canvas.addEventListener("mousemove", canvasMouseMove, false);
 
-	//debug
-	log("width: "+ canvas.width +" height: "+ canvas.height);
-
 	// Show the initial state
 	render();
 }
@@ -124,7 +121,6 @@ function getCanvasPos() {
 }
 
 function isAt(piece, x, y) {
-	log("piece width: "+ piece.img.width +" height: "+ piece.img.height);
 	if (x >= piece.position.x && y >= piece.position.y) {
 		if (x <= piece.position.x + piece.img.width && y <= piece.position.y + piece.img.height) {
 			return true;
@@ -155,7 +151,6 @@ function countCards(deck) {
 function canvasMouseDown() {
 	var pos = getCanvasPos();
 	var i;
-	log("mouseDown page("+ event.pageX +", "+ event.pageY +") canvas("+ pos.x +", "+ pos.y +")");
 
 	// Check if we grab a piece (reverse order to grab the one draw on top of others)
 	for (i = simulation.pieces.length - 1; i >= 0; --i) {
