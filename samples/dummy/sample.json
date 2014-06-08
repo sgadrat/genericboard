@@ -36,5 +36,61 @@
 				}
 			]
 		}
+	],
+	"diceGroups": [
+		{
+			"img": "imgs/dicegroup.jpg",
+			"position": {
+				"x": 530,
+				"y": 50
+			},
+			"dices": [
+				{
+					"currentValue": 0,
+					"position": {
+						"x": 10,
+						"y": 10
+					},
+					"values": [
+						{
+							"img": "imgs/d6-1.png"
+						},
+						{
+							"img": "imgs/d6-2.png"
+						},
+						{
+							"img": "imgs/d6-3.png"
+						},
+						{
+							"img": "imgs/d6-4.png"
+						},
+						{
+							"img": "imgs/d6-5.png"
+						},
+						{
+							"img": "imgs/d6-6.png"
+						}
+					]
+				},
+				{
+					"currentValue": 0,
+					"position": {
+						"x": 60,
+						"y": 10
+					},
+					"values": [
+						{
+							"img": "imgs/d3-1.png"
+						},
+						{
+							"img": "imgs/d3-2.png"
+						},
+						{
+							"img": "imgs/d3-3.png"
+						}
+					]
+				}
+			]
+		}
 	]
 }

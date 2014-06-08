@@ -1,5 +1,8 @@
 var canvas = null;
 var canvasCtx = null;
+var animationRunning = false;
+var animatedDiceGroup = null;
+var lastDiceAnimation = null;
 
 var simulation = null;
 
@@ -57,6 +60,24 @@ function loadImages() {
 			simulation.decks[i].composition[j].img.src = src;
 		}
 	}
+
+	for (i = 0; i < simulation.diceGroups.length; ++i) {
+		src = simulation.diceGroups[i].img;
+		simulation.diceGroups[i].img = new Image();
+		simulation.diceGroups[i].img.addEventListener("load", waitLoad, false);
+		simulation.diceGroups[i].img.src = src;
+
+		var j;
+		for (j = 0; j < simulation.diceGroups[i].dices.length; ++j) {
+			var h;
+			for (h = 0; h < simulation.diceGroups[i].dices[j].values.length; ++h) {
+				src = simulation.diceGroups[i].dices[j].values[h].img;
+				simulation.diceGroups[i].dices[j].values[h].img = new Image();
+				simulation.diceGroups[i].dices[j].values[h].img.addEventListener("load", waitLoad, false);
+				simulation.diceGroups[i].dices[j].values[h].img.src = src;
+			}
+		}
+	}
 }
 
 function waitLoad() {
@@ -95,6 +116,29 @@ function waitLoad() {
 		}
 	}
 
+	for (i = 0; i < simulation.diceGroups.length; ++i) {
+		var g = simulation.diceGroups[i];
+		if (! g.img.complete) {
+			fullyLoaded = false;
+		}else {
+			g.img.removeEventListener("load", waitLoad, false);
+		}
+
+		var j;
+		for (j = 0; j < g.dices.length; ++j) {
+			var d = g.dices[j];
+			var h;
+			for (h = 0; h < d.values.length; ++h) {
+				var v = d.values[h];
+				if (! v.img.complete) {
+					fullyLoaded = false;
+				}else {
+					v.img.removeEventListener("load", waitLoad, false);
+				}
+			}
+		}
+	}
+
 	if (fullyLoaded) {
 		loaded();
 	}
@@ -118,6 +162,39 @@ function getCanvasPos() {
 		x: event.clientX - rect.left,
 		y: event.clientY - rect.top
 	};
+}
+
+function startAnimation() {
+	animationRunning = true;
+	runAnimation();
+}
+
+function stopAnimation() {
+	animationRunning = false;
+}
+
+function runAnimation() {
+	if (animationRunning) {
+		window.requestAnimationFrame(runAnimation);
+		updateAnimation();
+		render();
+	}
+}
+
+function updateAnimation() {
+	var now = Date.now();
+	if (animatedDiceGroup != null && (lastDiceAnimation == null || now - lastDiceAnimation >= 50)) {
+		lastDiceAnimation = now;
+		var i;
+		for (i = 0; i < animatedDiceGroup.dices.length; ++i) {
+			var d = animatedDiceGroup.dices[i];
+			var newValue;
+			do {
+				newValue = Math.floor(Math.random() * d.values.length);
+			}while (newValue == d.currentValue);
+			d.currentValue = newValue;
+		}
+	}
 }
 
 function isAt(piece, x, y) {
@@ -196,7 +273,18 @@ function canvasMouseDown() {
 				}
 				simulation.pieces.push(cardPiece);
 				render();
+				return;
 			}
+		}
+	}
+
+	// Maybe we throw dices
+	for (i = 0; i < simulation.diceGroups.length; ++i) {
+		var diceGroup = simulation.diceGroups[i];
+		if (isAt(diceGroup, pos.x, pos.y)) {
+			animatedDiceGroup = diceGroup;
+			startAnimation();
+			return;
 		}
 	}
 }
@@ -206,6 +294,9 @@ function canvasMouseUp() {
 	for (i = 0; i < simulation.pieces.length; ++i) {
 		simulation.pieces[i].selected = false;
 	}
+
+	animatedDiceGroup = null;
+	animationRunning = false;
 }
 
 function canvasMouseMove() {
@@ -228,6 +319,16 @@ function render() {
 		var d = simulation.decks[i];
 		if (! isEmpty(d)) {
 			canvasCtx.drawImage(d.img, d.position.x, d.position.y);
+		}
+	}
+
+	for (i = 0; i < simulation.diceGroups.length; ++i) {
+		var g = simulation.diceGroups[i];
+		canvasCtx.drawImage(g.img, g.position.x, g.position.y);
+		var j;
+		for (j = 0; j < g.dices.length; ++ j) {
+			var d = g.dices[j];
+			canvasCtx.drawImage(d.values[d.currentValue].img, d.position.x + g.position.x, d.position.y + g.position.y);
 		}
 	}
 
